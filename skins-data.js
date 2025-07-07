@@ -212,5 +212,12 @@ const skins = [
     link: 'skin-detail.html?hero=wanwan-summer',
     category: "summer"
   },
+  {
+    img: 'https://i.ibb.co/9m4NtyWR/Novaria-Dragonsworn.jpg',
+    name: 'Novaria Collector',
+    date: "07-07-2025 23:33",
+    link: 'skin-detail.html?hero=novaria-collector',
+    category: "collector"
+  },
   
 ];
