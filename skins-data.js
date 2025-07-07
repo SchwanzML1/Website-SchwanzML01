@@ -110,7 +110,7 @@ const skins = [
     {
     img: 'https://i.ibb.co/W4RGgvPt/Ling-Neobeast-Ling.jpg',
     name: 'Ling Neobeast',
-    date: '02-05-2025',
+    date:  "07-07-2025 5:55",
     link: 'skin-detail.html?hero=ling-neobeast',
     category: "neobeast"
   },
@@ -197,6 +197,20 @@ const skins = [
     date: "06-07-2025 21:00",
     link: 'skin-detail.html?hero=pharsa-collector',
     category: "collector"
+  },
+   {
+    img: 'https://i.ibb.co/HLsf96Ng/Brody-Neobeast-Brody.jpg',
+    name: 'Brody Neobeast',
+    date: "07-07-2025 5:55",
+    link: 'skin-detail.html?hero=brody-neobeast',
+    category: "neobeast"
+  },
+  {
+    img: 'https://i.ibb.co/Xx6vgSzy/wanwan-summer-splash-6744643382-1280x720sr.jpg',
+    name: 'Wanwan Summer',
+    date: "07-07-2025 18:45",
+    link: 'skin-detail.html?hero=wanwan-summer',
+    category: "summer"
   },
   
 ];
