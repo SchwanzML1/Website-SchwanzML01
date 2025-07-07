@@ -12,7 +12,7 @@ const skins = [
     date: '26-06-2025',
     link: 'skin-detail.html?hero=alucard-luckybox',
     category: "luckybox"
-  },
+  }
   {
     img: 'https://i.ibb.co/VW5tDKKb/Natan-Archon-of-Knowledge.jpg',
     name: 'Natan MSC',
