@@ -155,8 +155,23 @@
   overflow: hidden;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   padding-bottom: 8px;
+  opacity: 0;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   position: relative;
+}
+@keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.skin-card.animate-in {
+  animation: fadeDown 0.4s ease forwards;
 }
 
 .skin-card:hover {
@@ -565,13 +580,32 @@ function initMenu() {
     };
   }
 }
-  // Hilangkan efek animasi klik saat balik (back)
+// Hilangkan efek animasi klik saat balik (back)
 window.addEventListener("pageshow", function () {
   document.querySelectorAll('.skin-card.clicked').forEach(el => {
     el.classList.remove('clicked');
   });
 });
 </script>
-
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const cards = document.querySelectorAll('.skin-card');
+  cards.forEach((card, i) => {
+    setTimeout(() => {
+      card.classList.add('animate-in');
+    }, i * 80); // jeda antar skin biar smooth dari atas ke bawah
+  });
+});
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const cards = document.querySelectorAll('.skin-card');
+  cards.forEach((card, i) => {
+    setTimeout(() => {
+      card.classList.add('animate-in');
+    }, i * 80); // jeda antar skin
+  });
+});
+</script>
 </body>
 </html>
