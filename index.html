@@ -387,28 +387,11 @@ footer .footer-copy {
       noResult.style.display = found ? 'none' : 'block';
     }
 
-    document.getElementById("searchInput").addEventListener("keydown", function (event) {
+  document.getElementById("searchInput").addEventListener("keydown", function (event) {
   if (event.key === "Enter") {
-    const filter = this.value.trim().toLowerCase();
-    const title = document.getElementById("searchTitle");
-
-    if (filter === '') {
-      title.innerText = 'Hero Terbaru';
-      renderSkins();
-// Ambil parameter ?search= dari URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const searchParam = urlParams.get("search");
-    if (searchParam) {
-      document.getElementById("searchInput").value = searchParam;
-      document.getElementById("searchTitle").innerText = 'Hasil untuk: ' + searchParam;
-      renderSkins(searchParam.toLowerCase());
-    }
-   
-   
-    
-    } else {
-      title.innerText = 'Hasil untuk: ' + filter;
-      renderSkins(filter);
+    const keyword = this.value.trim().toLowerCase();
+    if (keyword) {
+      window.location.href = `index.html?search=${encodeURIComponent(keyword)}`;
     }
   }
 });
