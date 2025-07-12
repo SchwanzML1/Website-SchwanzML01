@@ -178,9 +178,9 @@
     }
 
     .category-card:hover {
-      transform: scale(1.03);
-      background-color: #f3f3f3;
-    }
+  transform: translateY(-4px);
+  background-color: #f3f3f3;
+}
 
     footer {
       background-color: #f2f2f2;
@@ -221,6 +221,25 @@
       font-size: 13px;
       color: #777;
     }
+    @keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.category-card {
+  opacity: 0; /* Tambahan supaya animasi bisa bekerja */
+  transition: transform 0.3s ease;
+}
+
+.category-card.animate-in {
+  animation: fadeDown 0.4s ease forwards;
+}
   </style>
 </head>
 <body>
@@ -265,7 +284,11 @@
        <a href="kategori-skin.html?kategori=msc" class="category-card">MSC</a>
       <a href="kategori-skin.html?kategori=naruto" class="category-card">Naruto</a>
       <a href="kategori-skin.html?kategori=kof" class="category-card">KOF</a>
+      
       <a href="kategori-skin.html?kategori=summer" class="category-card">Summer</a>
+      <a href="kategori-skin.html?kategori=kof" class="category-card">KOF</a>
+      
+      <a href="kategori-skin.html?kategori=aspirant" class="category-card">Aspirant</a>
     </div>
   </div>
 
@@ -352,5 +375,15 @@
       }
     }
   </script>
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const cards = document.querySelectorAll(".category-card");
+    cards.forEach((card, i) => {
+      setTimeout(() => {
+        card.classList.add("animate-in");
+      }, i * 100); // jeda 100ms antar kartu
+    });
+  });
+</script>
 </body>
 </html>
