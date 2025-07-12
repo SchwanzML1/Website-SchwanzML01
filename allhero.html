@@ -565,6 +565,12 @@ function initMenu() {
     };
   }
 }
+  // Hilangkan efek animasi klik saat balik (back)
+window.addEventListener("pageshow", function () {
+  document.querySelectorAll('.skin-card.clicked').forEach(el => {
+    el.classList.remove('clicked');
+  });
+});
 </script>
 
 </body>
