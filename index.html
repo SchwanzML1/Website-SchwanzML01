@@ -277,6 +277,7 @@ footer .footer-copy {
   color: #777;
 }
 
+
   </style>
 </head>
 <body>
@@ -304,7 +305,7 @@ footer .footer-copy {
   </div>  <div class="skin-section">
     <div class="skin-header">
       <div class="left-title" id="searchTitle">Hero Terbaru</div>
-      <div class="right-link" id="lihatSemua"><a href="allhero.html">Lihat Semua</a></div>
+    <a href="allhero.html" class="right-link" id="lihatSemua">Lihat Semua</a>
     </div>
     <div class="skin-list" id="skinList"></div>
     <div id="noResult" style="display: none; text-align: center; margin-top: 20px; font-weight: bold; color: red;">Tidak ada hasil ditemukan.</div>
@@ -341,154 +342,137 @@ footer .footer-copy {
     <div class="footer-copy">Copyright: ©2025 <strong>Schwanz ML</strong> · Moonton · All rights reserved.</div>
   </footer>  
   <div id="loadingText" style="display: none; text-align: center; font-size: 18px; font-weight: bold; color: #1E90FF; margin-top: 20px;">Tunggu sebentar ya...</div> 
-  <script src="skins-data.js"></script>  <script>
-    function toggleMenu(hamburger) {
-  const menu = document.getElementById('menu');
-  if (!hamburger.classList.contains('active')) {
-    hamburger.classList.add('active');
-    menu.style.display = 'block';
-    setTimeout(() => menu.classList.add('show'), 10);
-  } else {
-    hamburger.classList.remove('active');
-    menu.classList.remove('show');
-    setTimeout(() => menu.style.display = 'none', 300);
+<script src="skins-data.js"></script>
+<script>
+  function toggleMenu(hamburger) {
+    const menu = document.getElementById('menu');
+    if (!hamburger.classList.contains('active')) {
+      hamburger.classList.add('active');
+      menu.style.display = 'block';
+      setTimeout(() => menu.classList.add('show'), 10);
+    } else {
+      hamburger.classList.remove('active');
+      menu.classList.remove('show');
+      setTimeout(() => menu.style.display = 'none', 300);
+    }
   }
-}
 
-    
+  function parseTanggalIndo(tanggal) {
+    const [tglJam, jamStr] = tanggal.split(' ');
+    const [tgl, bulan, tahun] = tglJam.split('-').map(Number);
+    const [jam = 0, menit = 0] = (jamStr || '').split(':').map(Number);
+    return new Date(tahun, bulan - 1, tgl, jam, menit);
+  }
 
+  skins.sort((a, b) => parseTanggalIndo(b.date) - parseTanggalIndo(a.date));
+
+  function renderSkins(filter = '') {
     const skinList = document.getElementById('skinList');
+    const noResult = document.getElementById('noResult');
+    skinList.innerHTML = '';
+    let shown = 0;
+    let found = false;
 
-    function renderSkins(filter = '') {
-      skinList.innerHTML = '';
-      const noResult = document.getElementById('noResult');
-      let shown = 0;
-      let found = false;
+    skins.forEach((skin, i) => {
+      if (filter && !skin.name.toLowerCase().includes(filter)) return;
+      if (!filter && shown >= 10) return;
 
-      skins.forEach(skin => {
-        if (filter && !skin.name.toLowerCase().includes(filter)) return;
-        if (!filter && shown >= 10) return;
+      found = true;
+      const div = document.createElement('div');
+      div.className = 'skin-card';
+      div.innerHTML = `
+        <a href="#" onclick="handleClick('${skin.link}', this.parentNode); return false;" style="text-decoration: none; color: inherit;">
+          <img src="${skin.img}" alt="${skin.name}">
+          <div style="font-size: 12px; color: #666; margin-top: 6px;">${skin.date.split(" ")[0]}</div>
+          <div>${skin.name}</div>
+        </a>
+        <div class="loading-popup">Tunggu sebentar ya...</div>
+      `;
+      skinList.appendChild(div);
+      shown++;
+    });
 
-        found = true;
-        const div = document.createElement('div');
-        div.className = 'skin-card';
-       div.innerHTML = `
-  <a href="#" onclick="handleClick('${skin.link}', this.parentNode); return false;" style="text-decoration: none; color: inherit;">
-    <img src="${skin.img}" alt="${skin.name}">
-    <div style="font-size: 12px; color: #666; margin-top: 6px;">${skin.date.split(" ")[0]}</div>
-    <div>${skin.name}</div>
-  </a>
-  <div class="loading-popup">Tunggu sebentar ya...</div>
-`;
-        skinList.appendChild(div);
-        shown++;
+    noResult.style.display = found ? 'none' : 'block';
+
+    // Efek animasi setelah skin ditampilkan
+    setTimeout(() => {
+      document.querySelectorAll(".skin-card").forEach((card, i) => {
+        setTimeout(() => {
+          card.classList.add("animate-in");
+        }, i * 80);
       });
-
-      noResult.style.display = found ? 'none' : 'block';
-    }
-
-  document.getElementById("searchInput").addEventListener("keydown", function (event) {
-  if (event.key === "Enter") {
-    const keyword = this.value.trim().toLowerCase();
-    if (keyword) {
-      window.location.href = `index.html?search=${encodeURIComponent(keyword)}`;
-    }
+    }, 50);
   }
-});
 
-   function parseTanggalIndo(tanggal) {
-  const [tglJam, jamStr] = tanggal.split(' ');
-  const [tgl, bulan, tahun] = tglJam.split('-').map(Number);
-  const [jam = 0, menit = 0] = (jamStr || '').split(':').map(Number);
-  return new Date(tahun, bulan - 1, tgl, jam, menit);
-}
+  function handleClick(link, el) {
+    const loadingText = document.getElementById('loadingText');
+    loadingText.style.display = 'block';
+    if (el) el.classList.add('clicked');
+    setTimeout(() => {
+      window.location.href = link;
+    }, 800);
+  }
 
-skins.sort((a, b) => parseTanggalIndo(b.date) - parseTanggalIndo(a.date));
+  
 
-    function handleClick(link, el) {
-      const loadingText = document.getElementById('loadingText');
-      loadingText.style.display = 'block';
-      if (el) el.classList.add('clicked');
-      setTimeout(() => {
-        window.location.href = link;
-      }, 800);
-    }
+  window.addEventListener("pageshow", function () {
+    document.querySelectorAll(".skin-card.clicked").forEach(card => {
+      card.classList.remove("clicked");
+    });
+    const loadingText = document.getElementById('loadingText');
+    if (loadingText) loadingText.style.display = "none";
+  });
 
-    renderSkins();
-// Ambil parameter ?search= dari URL
+  document.addEventListener("DOMContentLoaded", () => {
+    const hamburger = document.querySelector(".hamburger");
+    const menu = document.getElementById("menu");
+
+    // Tutup menu saat klik di luar
+    document.addEventListener("click", function (event) {
+      if (!hamburger.contains(event.target) && !menu.contains(event.target)) {
+        if (menu.classList.contains("show")) {
+          menu.classList.remove("show");
+          hamburger.classList.remove("active");
+          setTimeout(() => (menu.style.display = "none"), 300);
+        }
+      }
+    });
+
     const urlParams = new URLSearchParams(window.location.search);
     const searchParam = urlParams.get("search");
+    const searchInput = document.getElementById("searchInput");
+    const searchTitle = document.getElementById("searchTitle");
+    const lihatSemua = document.getElementById("lihatSemua");
+
+    // Kalau ada parameter pencarian
     if (searchParam) {
-      document.getElementById("searchInput").value = searchParam;
-      document.getElementById("searchTitle").innerText = 'Hasil untuk: ' + searchParam;
+      searchInput.value = searchParam;
+      searchTitle.innerText = "Hasil untuk: " + searchParam;
+      if (lihatSemua) lihatSemua.style.display = "none";
       renderSkins(searchParam.toLowerCase());
+    } else {
+      if (lihatSemua) lihatSemua.style.display = "inline";
+      searchTitle.innerText = "Hero Terbaru";
+      renderSkins();
     }
-    
-    document.addEventListener("DOMContentLoaded", function () {
-  const hamburger = document.querySelector(".hamburger");
-  const menu = document.getElementById("menu");
 
-  document.addEventListener("click", function (event) {
-    if (!hamburger.contains(event.target) && !menu.contains(event.target)) {
-      if (menu.classList.contains("show")) {
-        menu.classList.remove("show");
-        hamburger.classList.remove("active");
-        setTimeout(() => (menu.style.display = "none"), 300);
+    // Event Enter pada search input
+    searchInput.addEventListener("keydown", function (event) {
+      if (event.key === "Enter") {
+        const keyword = this.value.trim().toLowerCase();
+        if (keyword) {
+          window.location.href = `index.html?search=${encodeURIComponent(keyword)}`;
+        }
       }
-    }
+    });
   });
-});
-  </script>
-  <script>
-document.addEventListener("DOMContentLoaded", function () {
-  const searchInput = document.getElementById("searchInput");
-  const searchTitle = document.getElementById("searchTitle");
-  const urlParams = new URLSearchParams(window.location.search);
-  const searchParam = urlParams.get("search");
+  function closeWarning() {
+  const box = document.getElementById("warningBox");
+  if (box) box.style.display = "none";
+}
+</script>
 
-  if (searchParam) {
-    searchInput.value = searchParam;
-    searchTitle.innerText = 'Hasil untuk: ' + searchParam;
-    renderSkins(searchParam.toLowerCase());
-
-    // ✅ Sembunyikan tombol "Lihat Semua"
-    const lihat = document.getElementById("lihatSemua");
-    if (lihat) lihat.style.display = "none";
-  }
-});
-</script>
-<script>
-window.addEventListener("pageshow", function (event) {
-  // Hapus semua class .clicked dari skin-card
-  const cards = document.querySelectorAll(".skin-card.clicked");
-  cards.forEach(card => {
-    card.classList.remove("clicked");
-  });
-
-  // Sembunyikan popup loading
-  const loadingText = document.getElementById('loadingText');
-  if (loadingText) loadingText.style.display = "none";
-});
-</script>
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const cards = document.querySelectorAll('.skin-card');
-  cards.forEach((card, i) => {
-    setTimeout(() => {
-      card.classList.add('animate-in');
-    }, i * 80); // jeda antar skin biar smooth dari atas ke bawah
-  });
-});
-</script>
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const cards = document.querySelectorAll('.skin-card');
-  cards.forEach((card, i) => {
-    setTimeout(() => {
-      card.classList.add('animate-in');
-    }, i * 80); // jeda antar skin
-  });
-});
-</script>
-  </body>
+</body>
+</html>
+</body>
 </html>
