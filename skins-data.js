@@ -219,5 +219,12 @@ const skins = [
     link: 'skin-detail.html?hero=novaria-collector',
     category: "collector"
   },
+  {
+    img: 'https://i.ibb.co/TMgLpFNY/20250718-092820.jpg',
+    name: 'Roger Metro Zero',
+    date: "18-07-2025 9:27",
+    link: 'skin-detail.html?hero=roger-metro-zero',
+    category: "metro-zero"
+  },
   
 ];
