@@ -276,7 +276,20 @@ footer .footer-copy {
   font-size: 13px;
   color: #777;
 }
+.skin-card.exit-anim {
+  animation: exitFade 0.4s ease forwards;
+}
 
+@keyframes exitFade {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+}
 
   </style>
 </head>
@@ -405,13 +418,16 @@ footer .footer-copy {
   }
 
   function handleClick(link, el) {
-    const loadingText = document.getElementById('loadingText');
-    loadingText.style.display = 'block';
-    if (el) el.classList.add('clicked');
-    setTimeout(() => {
-      window.location.href = link;
-    }, 800);
+  const loadingText = document.getElementById('loadingText');
+  loadingText.style.display = 'block';
+  if (el) {
+    el.classList.add('clicked');
+    el.classList.add('exit-anim'); // Tambahkan animasi keluar
   }
+  setTimeout(() => {
+    window.location.href = link;
+  }, 400); // Tunggu animasi selesai sebelum redirect
+}
 
   
 
