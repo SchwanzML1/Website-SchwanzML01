@@ -164,9 +164,23 @@
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 .skin-card.clicked {
-  transform: scale(0.95);
-  opacity: 0.6;
-  transition: all 0.15s ease;
+  pointer-events: none;
+}
+
+/* Efek keluar */
+.skin-card.exit-anim {
+  animation: exitFade 0.4s ease forwards;
+}
+
+@keyframes exitFade {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.8);
+  }
 }
 
 .skin-card img {
@@ -273,6 +287,8 @@ footer .footer-copy {
 .skin-card.animate {
   animation: fadeDown 0.4s ease both;
 }
+
+
   </style>
 </head>
 <body onload="initMenu()">
@@ -514,10 +530,9 @@ function handleSearch() {
 function handleKeyPress(e) {
   if (e.key === 'Enter') handleSearch();
 }
-function handleClick(link, el) {
-  if (el) el.classList.add('clicked');
-  setTimeout(() => window.location.href = link, 800);
-}
+
+
+
 const urlParams = new URLSearchParams(window.location.search);
 let currentPage = parseInt(urlParams.get('page')) || 1;
 const perPage = 10;
