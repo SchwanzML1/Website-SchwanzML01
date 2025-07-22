@@ -230,7 +230,14 @@ const skins = [
     img: 'https://i.ibb.co/CfpKSLV/20250718-111414.jpg',
     name: 'X Borg Metro Zero',
     date: "18-07-2025 11:13",
-    link: 'skin-detail.html?hero=xborg-metro-zero',
+    link: 'skin-detail.html?hero=#-metro-zero',
+    category: "metro-zero"
+  },
+  {
+    img: 'https://i.ibb.co/xqSc8XgL/20250722-120949.jpg',
+    name: 'Ixia Metro Zero',
+    date: "22-07-2025 12:8",
+    link: 'skin-detail.html?hero=ixia-metro-zero',
     category: "metro-zero"
   },
   
