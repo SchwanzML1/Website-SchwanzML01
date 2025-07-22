@@ -486,7 +486,7 @@ footer .footer-copy {
   const box = document.getElementById("warningBox");
   if (box) box.style.display = "none";
 }
-  window.addEventListener("pageshow", function () {
+window.addEventListener("pageshow", function () {
   // Reset animasi yang sebelumnya
   document.querySelectorAll(".skin-card.clicked").forEach(card => {
     card.classList.remove("clicked", "exit-anim");
