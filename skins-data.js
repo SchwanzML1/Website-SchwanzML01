@@ -226,5 +226,12 @@ const skins = [
     link: 'skin-detail.html?hero=roger-metro-zero',
     category: "metro-zero"
   },
+  {
+    img: 'https://i.ibb.co/CfpKSLV/20250718-111414.jpg',
+    name: 'X Borg Metro Zero',
+    date: "18-07-2025 11:13",
+    link: 'skin-detail.html?hero=xborg-metro-zero',
+    category: "metro-zero"
+  },
   
 ];
