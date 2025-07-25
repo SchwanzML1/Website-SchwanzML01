@@ -240,5 +240,12 @@ const skins = [
     link: 'skin-detail.html?hero=ixia-metro-zero',
     category: "metro-zero"
   },
+  {
+    img: 'https://i.ibb.co/TQ8CkbG/IMG-20250725-WA0001.jpg',
+    name: 'Aldous Special',
+    date: "25-07-2025 17:00",
+    link: 'skin-detail.html?hero=aldous-special',
+    category: "special"
+  },
   
 ];
