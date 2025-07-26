@@ -247,5 +247,12 @@ const skins = [
     link: 'skin-detail.html?hero=aldous-special',
     category: "special"
   },
+  {
+    img: 'https://i.ibb.co/8Dsqs9rQ/Natalia-New-Skin-Epic-Artwork.webp',
+    name: 'Natalia Epic',
+    date: "25-07-2025 20:46",
+    link: 'skin-detail.html?hero=natalia-epic',
+    category: "epic"
+  },
   
 ];
