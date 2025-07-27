@@ -230,7 +230,7 @@ const skins = [
     img: 'https://i.ibb.co/CfpKSLV/20250718-111414.jpg',
     name: 'X Borg Metro Zero',
     date: "18-07-2025 11:13",
-    link: 'skin-detail.html?hero=#-metro-zero',
+    link: 'skin-detail.html?hero=xborg-metro-zero',
     category: "metro-zero"
   },
   {
@@ -253,6 +253,13 @@ const skins = [
     date: "25-07-2025 20:46",
     link: 'skin-detail.html?hero=natalia-epic',
     category: "epic"
+  },
+  {
+    img: 'https://i.ibb.co/TDmYQ0NF/20250727-084753.jpg',
+    name: 'Hanabi Starlight',
+    date: "27-07-2025 9:52",
+    link: 'skin-detail.html?hero=hanabi-starlight',
+    category: "starlight"
   },
   
 ];
