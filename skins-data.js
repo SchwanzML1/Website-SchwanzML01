@@ -261,5 +261,12 @@ const skins = [
     link: 'skin-detail.html?hero=hanabi-starlight',
     category: "starlight"
   },
+  {
+    img: 'https://i.ibb.co/sdGmxYg7/Revamp-Clint-Skin-Summer-Artwork.webp',
+    name: 'Clint Summer',
+    date: "28-07-2025 16:48",
+    link: 'skin-detail.html?hero=clint-summer',
+    category: "summer"
+  },
   
 ];
