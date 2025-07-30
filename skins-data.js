@@ -268,5 +268,12 @@ const skins = [
     link: 'skin-detail.html?hero=clint-summer',
     category: "summer"
   },
+  {
+    img: 'https://i.ibb.co/r2pK8wh1/Revamp-Claude-Skin-Summer-Artwork.webp',
+    name: 'Claude Summer',
+    date: "29-07-2025 19:31",
+    link: 'skin-detail.html?hero=claude-summer',
+    category: "summer"
+  },
   
 ];
