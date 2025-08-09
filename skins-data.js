@@ -108,7 +108,7 @@ const skins = [
   },
     
     {
-    img: 'https://i.ibb.co/W4RGgvPt/Ling-Neobeast-Ling.jpg',
+    img: 'https://ik.imagekit.io/SchwanzML1/20250809_172421.jpg?updatedAt=1754735098513',
     name: 'Ling Neobeast',
     date:  "07-07-2025 5:55",
     link: 'skin-detail.html?hero=ling-neobeast',
@@ -199,42 +199,42 @@ const skins = [
     category: "collector"
   },
    {
-    img: 'https://i.ibb.co/HLsf96Ng/Brody-Neobeast-Brody.jpg',
+    img: 'https://ik.imagekit.io/SchwanzML1/20250809_172426.jpg?updatedAt=1754735098292',
     name: 'Brody Neobeast',
     date: "07-07-2025 5:55",
     link: 'skin-detail.html?hero=brody-neobeast',
     category: "neobeast"
   },
   {
-    img: 'https://i.ibb.co/Xx6vgSzy/wanwan-summer-splash-6744643382-1280x720sr.jpg',
+    img: 'https://ik.imagekit.io/SchwanzML1/wanwan-summer-splash-6744643382-1280x720sr.jpg?updatedAt=1754735011886',
     name: 'Wanwan Summer',
     date: "07-07-2025 18:45",
     link: 'skin-detail.html?hero=wanwan-summer',
     category: "summer"
   },
   {
-    img: 'https://i.ibb.co/9m4NtyWR/Novaria-Dragonsworn.jpg',
+    img: 'https://ik.imagekit.io/SchwanzML1/20250809_172225.jpg?updatedAt=1754735011829',
     name: 'Novaria Collector',
     date: "07-07-2025 23:33",
     link: 'skin-detail.html?hero=novaria-collector',
     category: "collector"
   },
   {
-    img: 'https://i.ibb.co/TMgLpFNY/20250718-092820.jpg',
+    img: 'https://ik.imagekit.io/SchwanzML1/20250809_172120.jpg?updatedAt=1754734898348',
     name: 'Roger Metro Zero',
     date: "18-07-2025 9:27",
     link: 'skin-detail.html?hero=roger-metro-zero',
     category: "metro-zero"
   },
   {
-    img: 'https://i.ibb.co/CfpKSLV/20250718-111414.jpg',
+    img: 'https://ik.imagekit.io/SchwanzML1/20250809_172124.jpg?updatedAt=1754734898376',
     name: 'X Borg Metro Zero',
     date: "18-07-2025 11:13",
     link: 'skin-detail.html?hero=xborg-metro-zero',
     category: "metro-zero"
   },
   {
-    img: 'https://i.ibb.co/xqSc8XgL/20250722-120949.jpg',
+    img: 'https://ik.imagekit.io/SchwanzML1/20250809_172003.jpg?updatedAt=1754734825133',
     name: 'Ixia Metro Zero',
     date: "22-07-2025 12:8",
     link: 'skin-detail.html?hero=ixia-metro-zero',
@@ -262,14 +262,14 @@ const skins = [
     category: "starlight"
   },
   {
-    img: 'https://i.ibb.co/sdGmxYg7/Revamp-Clint-Skin-Summer-Artwork.webp',
+    img: 'https://ik.imagekit.io/SchwanzML1/GwC-OtlXIAEgi2v.jpeg?updatedAt=1754734688624',
     name: 'Clint Summer',
     date: "28-07-2025 16:48",
     link: 'skin-detail.html?hero=clint-summer',
     category: "summer"
   },
   {
-    img: 'https://i.ibb.co/r2pK8wh1/Revamp-Claude-Skin-Summer-Artwork.webp',
+    img: 'https://ik.imagekit.io/SchwanzML/Revamp%20Claude%20Skin%20Summer%20-%20Artwork%20-----------------------------------------------------------.webp?updatedAt=1754610460045',
     name: 'Claude Summer',
     date: "29-07-2025 19:31",
     link: 'skin-detail.html?hero=claude-summer',
