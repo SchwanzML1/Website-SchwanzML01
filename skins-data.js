@@ -241,21 +241,21 @@ const skins = [
     category: "metro-zero"
   },
   {
-    img: 'https://i.ibb.co/TQ8CkbG/IMG-20250725-WA0001.jpg',
+    img: 'https://ik.imagekit.io/SchwanzML1/images.jpeg?updatedAt=1754781822034',
     name: 'Aldous Special',
     date: "25-07-2025 17:00",
     link: 'skin-detail.html?hero=aldous-special',
     category: "special"
   },
   {
-    img: 'https://i.ibb.co/8Dsqs9rQ/Natalia-New-Skin-Epic-Artwork.webp',
+    img: 'https://ik.imagekit.io/SchwanzML1/FB_IMG_1754781759573.jpg?updatedAt=1754781822228',
     name: 'Natalia Epic',
     date: "25-07-2025 20:46",
     link: 'skin-detail.html?hero=natalia-epic',
     category: "epic"
   },
   {
-    img: 'https://i.ibb.co/TDmYQ0NF/20250727-084753.jpg',
+    img: 'https://ik.imagekit.io/SchwanzML1/FB_IMG_1754781702466.jpg?updatedAt=1754781821964',
     name: 'Hanabi Starlight',
     date: "27-07-2025 9:52",
     link: 'skin-detail.html?hero=hanabi-starlight',
