@@ -275,5 +275,12 @@ const skins = [
     link: 'skin-detail.html?hero=claude-summer',
     category: "summer"
   },
+  {
+    img: 'https://ik.imagekit.io/Schwanzml2/Grock_(V.E.N.O.M._Monitor_Lizard).jpg?updatedAt=1755513640437',
+    name: 'Grock Venom',
+    date: "18-08-2025 17:38",
+    link: 'skin-detail.html?hero=grock-venom',
+    category: "venom"
+  },
   
 ];
