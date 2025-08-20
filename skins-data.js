@@ -282,5 +282,12 @@ const skins = [
     link: 'skin-detail.html?hero=grock-venom',
     category: "venom"
   },
+   {
+    img: 'https://ik.imagekit.io/Schwanzml2/Natalia_(Cyber_Spectre).jpg?updatedAt=1755657619761',
+    name: 'Natalia Create',
+    date: "20-08-2025 09:38",
+    link: 'skin-detail.html?hero=natalia-create',
+    category: "create"
+  },
   
 ];
