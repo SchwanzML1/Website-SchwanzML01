@@ -289,5 +289,12 @@ const skins = [
     link: 'skin-detail.html?hero=natalia-create',
     category: "create"
   },
+  {
+    img: 'https://ik.imagekit.io/Schwanzml2/images.jpeg?updatedAt=1755790799700',
+    name: 'Lunox MPL',
+    date: "21-08-2025 22:38",
+    link: 'skin-detail.html?hero=lunox-mpl',
+    category: "mpl"
+  },
   
 ];
