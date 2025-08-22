@@ -296,5 +296,11 @@ const skins = [
     link: 'skin-detail.html?hero=lunox-mpl',
     category: "mpl"
   },
-  
+   {
+    img: 'https://ik.imagekit.io/Schwanzml2/20250822_160910.jpg?updatedAt=1755853785142',
+    name: 'Aamon Collector',
+    date: "22-08-2025 16:08",
+    link: 'skin-detail.html?hero=aamon-collector',
+    category: "collector"
+  },
 ];
