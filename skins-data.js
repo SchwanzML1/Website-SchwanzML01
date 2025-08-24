@@ -303,4 +303,11 @@ const skins = [
     link: 'skin-detail.html?hero=aamon-collector',
     category: "collector"
   },
+   {
+    img: 'https://ik.imagekit.io/Schwanzml2/20250824_181652.jpg?updatedAt=1756037012110',
+    name: 'Kagura Special',
+    date: "24-08-2025 19:04",
+    link: 'skin-detail.html?hero=kagura-special',
+    category: "special"
+  },
 ];
