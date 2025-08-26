@@ -310,4 +310,11 @@ const skins = [
     link: 'skin-detail.html?hero=kagura-special',
     category: "special"
   },
+   {
+    img: 'https://ik.imagekit.io/Schwanzml2/20250826_131356.jpg?updatedAt=1756188900978',
+    name: 'Minsitthar Elite',
+    date: "26-08-2025 13:12",
+    link: 'skin-detail.html?hero=minsitthar-elite',
+    category: "elite"
+  },
 ];
