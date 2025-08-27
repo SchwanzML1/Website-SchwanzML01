@@ -317,4 +317,11 @@ const skins = [
     link: 'skin-detail.html?hero=minsitthar-elite',
     category: "elite"
   },
+   {
+    img: 'https://ik.imagekit.io/Schwanzml2/20250827_090852.jpg?updatedAt=1756260557770',
+    name: 'Valentina',
+    date: "27-08-2025 09:08",
+    link: 'skin-detail.html?hero=valentina-season',
+    category: "season"
+  },
 ];
