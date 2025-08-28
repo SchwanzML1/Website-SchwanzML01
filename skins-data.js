@@ -319,9 +319,16 @@ const skins = [
   },
    {
     img: 'https://ik.imagekit.io/Schwanzml2/20250827_090852.jpg?updatedAt=1756260557770',
-    name: 'Valentina',
+    name: 'Valentina Season',
     date: "27-08-2025 09:08",
     link: 'skin-detail.html?hero=valentina-season',
     category: "season"
+  },
+   {
+    img: 'https://ik.imagekit.io/Schwanzml2/c5d5c71ac4c78e823ad21c5566b11ba1.jpg?updatedAt=1756345518341',
+    name: 'Floryn Summer',
+    date: "28-08-2025 08:22",
+    link: 'skin-detail.html?hero=floryn-summer',
+    category: "summer"
   },
 ];
