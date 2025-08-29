@@ -331,4 +331,11 @@ const skins = [
     link: 'skin-detail.html?hero=floryn-summer',
     category: "summer"
   },
+   {
+    img: 'https://ik.imagekit.io/Schwanzml2/20250829_180500.jpg?updatedAt=1756466956990',
+    name: 'Thamuz Nexus Sea',
+    date: "29-08-2025 18:28",
+    link: 'skin-detail.html?hero=thamuz-nexus-sea',
+    category: "nexus-sea"
+  },
 ];
