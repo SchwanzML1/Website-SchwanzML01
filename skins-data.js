@@ -338,4 +338,11 @@ const skins = [
     link: 'skin-detail.html?hero=thamuz-nexus-sea',
     category: "nexus-sea"
   },
+  {
+    img: 'https://ik.imagekit.io/Schwanzml2/20250830_102443.jpg?updatedAt=1756525922532',
+    name: 'Layla Nexus Sea',
+    date: "30-08-2025 10:52",
+    link: 'skin-detail.html?hero=layla-nexus-sea',
+    category: "nexus-sea"
+  },
 ];
