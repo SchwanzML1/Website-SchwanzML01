@@ -345,4 +345,18 @@ const skins = [
     link: 'skin-detail.html?hero=layla-nexus-sea',
     category: "nexus-sea"
   },
+  {
+    img: 'https://ik.imagekit.io/Schwanzml2/Guinevere_(Twilight_Star).jpg?updatedAt=1756535916116',
+    name: 'Guinevere Aspirant',
+    date: "30-08-2025 13:28",
+    link: 'skin-detail.html?hero=guinevere-aspirant',
+    category: "aspirant"
+  },
+  {
+    img: 'https://ik.imagekit.io/Schwanzml2/20250830_163446.jpg?updatedAt=1756546518208',
+    name: 'Guinevere Aspirant',
+    date: "30-08-2025 16:45",
+    link: 'skin-detail.html?hero=joy-champion',
+    category: "m-series"
+  },
 ];
