@@ -354,9 +354,9 @@ const skins = [
   },
   {
     img: 'https://ik.imagekit.io/Schwanzml2/20250830_163446.jpg?updatedAt=1756546518208',
-    name: 'Guinevere Aspirant',
+    name: 'Joy Champion',
     date: "30-08-2025 16:45",
     link: 'skin-detail.html?hero=joy-champion',
-    category: "m-series"
+    category: "champion"
   },
 ];
