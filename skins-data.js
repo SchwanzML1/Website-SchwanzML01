@@ -369,7 +369,7 @@ const skins = [
   {
     img: 'https://ik.imagekit.io/Schwanzml2/20250831_154834.jpg?updatedAt=1756630884334',
     name: 'Fanny Aniversary',
-    date: "31-08-2025 10:37",
+    date: "31-08-2025 16:03",
     link: 'skin-detail.html?hero=fanny-aniversary',
     category: "aniversary"
   },
