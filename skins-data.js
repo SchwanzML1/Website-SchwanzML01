@@ -362,8 +362,15 @@ const skins = [
   {
     img: 'https://ik.imagekit.io/Schwanzml2/20250831_102628.jpg?updatedAt=1756611527375',
     name: 'Zhuxin Aniversary',
-    date: "01-09-2025 10:37",
+    date: "31-08-2025 10:37",
     link: 'skin-detail.html?hero=zhuxin-aniversary',
+    category: "aniversary"
+  },
+  {
+    img: 'https://ik.imagekit.io/Schwanzml2/20250831_102628.jpg?updatedAt=1756611527375',
+    name: 'Fanny Aniversary',
+    date: "31-08-2025 10:37",
+    link: 'skin-detail.html?hero=fanny-aniversary',
     category: "aniversary"
   },
 ];
