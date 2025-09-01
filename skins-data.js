@@ -373,4 +373,11 @@ const skins = [
     link: 'skin-detail.html?hero=fanny-aniversary',
     category: "aniversary"
   },
+  {
+    img: 'https://ik.imagekit.io/Schwanzml2/20250901_104421.jpg?updatedAt=1756698289352',
+    name: 'Cici Aniversary',
+    date: "01-09-2025 10:34",
+    link: 'skin-detail.html?hero=cici-aniversary',
+    category: "aniversary"
+  },
 ];
