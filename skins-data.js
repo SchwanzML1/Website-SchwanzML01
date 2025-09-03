@@ -380,4 +380,11 @@ const skins = [
     link: 'skin-detail.html?hero=cici-aniversary',
     category: "aniversary"
   },
+  {
+    img: 'https://ik.imagekit.io/Schwanzml2/Kagura_(Rainy_Walk).jpg?updatedAt=1756865000883',
+    name: 'Kagura Starlight',
+    date: "03-09-2025 09:03",
+    link: 'skin-detail.html?hero=kagura-starlight',
+    category: "starlight"
+  },
 ];
