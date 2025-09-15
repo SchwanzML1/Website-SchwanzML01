@@ -502,13 +502,7 @@ footer .support-link img {
 
   
 
-  window.addEventListener("pageshow", function () {
-    document.querySelectorAll(".skin-card.clicked").forEach(card => {
-      card.classList.remove("clicked");
-    });
-    const loadingText = document.getElementById('loadingText');
-    if (loadingText) loadingText.style.display = "none";
-  });
+  
 
   document.addEventListener("DOMContentLoaded", () => {
     const hamburger = document.querySelector(".hamburger");
