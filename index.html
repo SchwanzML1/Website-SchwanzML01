@@ -155,11 +155,24 @@
   font-size: 16px;
 }
 
-.skin-header .right-link {
-  font-size: 14px;
-  color: #1E90FF;
-  text-decoration: underline;
-  cursor: pointer;
+.right-link {
+  display: inline-block;
+  background-color: #1E90FF;
+  color: white !important;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: bold;
+  text-decoration: none !important;  /* paksa hilang underline */
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+}
+
+.right-link:hover {
+  background-color: #0d6efd;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+  text-decoration: none !important;
 }
 
 .skin-list {
@@ -277,20 +290,72 @@ footer .footer-copy {
   color: #777;
 }
 .skin-card.exit-anim {
-  animation: exitFade 0.4s ease forwards;
+  animation: exitSmooth 0.6s ease forwards;
 }
 
-@keyframes exitFade {
-  from {
+@keyframes exitSmooth {
+  0% {
     opacity: 1;
-    transform: scale(1);
+    transform: scale(1) translateY(0);
+    filter: blur(0px);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(0.95) translateY(-10px);
+    filter: blur(1px);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.8) translateY(30px);
+    filter: blur(3px);
+  }
+}
+footer .support-link {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+footer .support-link img {
+  width: 30px;
+  height: 30px;
+  margin-right: 8px;
+  object-fit: contain; /* biar gambar ga gepeng */
+}
+@media (min-width: 992px) {
+  footer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* logo tetap di kiri */
+  }
+
+  footer .footer-content {
+    display: flex;
+    justify-content: flex-end; /* dorong semua ke kanan */
+    width: 100%;
+    gap: 60px; /* jarak antar kolom */
+    text-align: left; /* isi tetap rata kiri di dalam kolom */
+  }
+
+  footer .footer-section {
+    min-width: 150px; 
+  }
+}
+/* Animasi container saat ganti hasil search */
+.skin-list.search-anim {
+  animation: fadeSlideIn 0.5s ease;
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
   }
   to {
-    opacity: 0;
-    transform: scale(0.8);
+    opacity: 1;
+    transform: translateY(0);
   }
 }
-
   </style>
 </head>
 <body>
@@ -336,21 +401,22 @@ footer .footer-copy {
     </div>
     <div style="margin-bottom: 20px;">
       <div style="font-weight: bold; margin-bottom: 8px;">Populer</div>
-      <div><a href="chou-saint-seiya.html">Chou - Saint Seiya</a></div>
-      <div><a href="lukas-naruto.html">Lukas X Naruto</a></div>
-      <div><a href="hayabusa-kakashi.html">Hayabua X Kakashi</a></div>
-      <div><a href="selena-zenith.html">Selena Zenith</a></div>
+      <div><a href="skin-detail.html?hero=joy-champion">Joy Champion</a></div>
+      <div><a href="skin-detail.html?hero=layla-nexus-sea">Layla Nexus Sea</a></div>
+      <div><a href="skin-detail.html?hero=guinevere-aspirant">Guinevere Aspirant</a></div>
+      <div><a href="skin-detail.html?hero=kagura-special">Kagura Special</a></div>
     </div>
     <div style="margin-bottom: 10px;">
       <div style="font-weight: bold; margin-bottom: 8px;">Support</div>
-      <a href="https://saweria.co/SchwanzSigma" target="_blank" style="display: flex; align-items: center; margin-bottom: 5px;">
-        <img src="https://ik.imagekit.io/Schwanzml2/Picsart_25-09-02_07-10-54-237.png?updatedAt=1756771883472" alt="Saweria" style="width: 23px; height: 25px; margin-right: 8px;">
-        <span>Saweria</span>
-      </a>
-      <a href="https://tako.id/SchwanzML" target="_blank" style="display: flex; align-items: center; margin-bottom: 5px;">
-        <img src="https://ik.imagekit.io/Schwanzml2/login.png?updatedAt=1756771977002" alt="Tako ID" style="width: 30px; height: 30px; margin-right: 8px;">
-        <span>Tako ID</span>
-      </a>
+      <a href="https://saweria.co/SchwanzSigma" target="_blank" class="support-link">
+  <img src="https://ik.imagekit.io/Schwanzml2/Picsart_25-09-02_07-10-54-237.png?updatedAt=1756771883472" alt="Saweria">
+  <span>Saweria</span>
+</a>
+
+<a href="https://tako.id/SchwanzML" target="_blank" class="support-link">
+  <img src="https://ik.imagekit.io/Schwanzml2/login.png?updatedAt=1756771977002" alt="Tako ID">
+  <span>Tako ID</span>
+</a>
     </div>
     <div class="footer-copy">Copyright: ©2025 <strong>Schwanz ML</strong> · Moonton · All rights reserved.</div>
   </footer>  
@@ -380,53 +446,58 @@ footer .footer-copy {
   skins.sort((a, b) => parseTanggalIndo(b.date) - parseTanggalIndo(a.date));
 
   function renderSkins(filter = '') {
-    const skinList = document.getElementById('skinList');
-    const noResult = document.getElementById('noResult');
-    skinList.innerHTML = '';
-    let shown = 0;
-    let found = false;
+  const skinList = document.getElementById('skinList');
+  const noResult = document.getElementById('noResult');
+  skinList.innerHTML = '';
+  let shown = 0;
+  let found = false;
 
-    skins.forEach((skin, i) => {
-      if (filter && !skin.name.toLowerCase().includes(filter)) return;
-      if (!filter && shown >= 10) return;
+  skins.forEach((skin, i) => {
+    if (filter && !skin.name.toLowerCase().includes(filter)) return;
+    if (!filter && shown >= 10) return;
 
-      found = true;
-      const div = document.createElement('div');
-      div.className = 'skin-card';
-      div.innerHTML = `
-        <a href="#" onclick="handleClick('${skin.link}', this.parentNode); return false;" style="text-decoration: none; color: inherit;">
-          <img src="${skin.img}" alt="${skin.name}">
-          <div style="font-size: 12px; color: #666; margin-top: 6px;">${skin.date.split(" ")[0]}</div>
-          <div>${skin.name}</div>
-        </a>
-        <div class="loading-popup">Tunggu sebentar ya...</div>
-      `;
-      skinList.appendChild(div);
-      shown++;
+    found = true;
+    const div = document.createElement('div');
+    div.className = 'skin-card';
+    div.innerHTML = `
+      <a href="#" onclick="handleClick('${skin.link}', this.parentNode); return false;" style="text-decoration: none; color: inherit;">
+        <img src="${skin.img}" alt="${skin.name}">
+        <div style="font-size: 12px; color: #666; margin-top: 6px;">${skin.date.split(" ")[0]}</div>
+        <div>${skin.name}</div>
+      </a>
+      <div class="loading-popup">Tunggu sebentar ya...</div>
+    `;
+    skinList.appendChild(div);
+    shown++;
+  });
+
+  noResult.style.display = found ? 'none' : 'block';
+
+  // Trigger animasi container tiap kali render
+  skinList.classList.remove("search-anim");
+  void skinList.offsetWidth; // trik restart animasi
+  skinList.classList.add("search-anim");
+
+  // Efek animasi tiap skin
+  setTimeout(() => {
+    document.querySelectorAll(".skin-card").forEach((card, i) => {
+      setTimeout(() => {
+        card.classList.add("animate-in");
+      }, i * 80);
     });
-
-    noResult.style.display = found ? 'none' : 'block';
-
-    // Efek animasi setelah skin ditampilkan
-    setTimeout(() => {
-      document.querySelectorAll(".skin-card").forEach((card, i) => {
-        setTimeout(() => {
-          card.classList.add("animate-in");
-        }, i * 80);
-      });
-    }, 50);
-  }
+  }, 50);
+}
 
   function handleClick(link, el) {
-  const loadingText = document.getElementById('loadingText');
-  loadingText.style.display = 'block';
   if (el) {
-    el.classList.add('clicked');
-    el.classList.add('exit-anim'); // Tambahkan animasi keluar
+    el.classList.add('clicked');   // Tambah class biar popup muncul
+    el.classList.add('exit-anim'); // Efek keluar (fade out kartu)
   }
+
+  // Kasih jeda biar popup sempat kelihatan
   setTimeout(() => {
     window.location.href = link;
-  }, 400); // Tunggu animasi selesai sebelum redirect
+  }, 1500); // 1.5 detik delay
 }
 
   
@@ -473,14 +544,31 @@ footer .footer-copy {
     }
 
     // Event Enter pada search input
-    searchInput.addEventListener("keydown", function (event) {
-      if (event.key === "Enter") {
-        const keyword = this.value.trim().toLowerCase();
-        if (keyword) {
-          window.location.href = `index.html?search=${encodeURIComponent(keyword)}`;
-        }
-      }
-    });
+   // Event Enter pada search input
+// Event Enter pada search input
+searchInput.addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    const keyword = this.value.trim().toLowerCase();
+    if (keyword) {
+      // Munculin teks loading
+      const loadingText = document.getElementById("loadingText");
+      loadingText.style.display = "block";
+
+      // Sembunyikan hasil lama dulu
+      skinList.innerHTML = "";
+
+      // Delay 800ms (0.8 detik) baru render
+      setTimeout(() => {
+        searchTitle.innerText = "Hasil untuk: " + keyword;
+        lihatSemua.style.display = "none";
+        renderSkins(keyword);
+
+        // Hilangkan teks loading
+        loadingText.style.display = "none";
+      }, 800);
+    }
+  }
+});
   });
   function closeWarning() {
   const box = document.getElementById("warningBox");
@@ -500,7 +588,7 @@ window.addEventListener("pageshow", function () {
   if (searchParam) {
     renderSkins(searchParam.toLowerCase());
   } else {
-    renderSkins();
+    
   }
 });
 </script>
