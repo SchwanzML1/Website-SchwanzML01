@@ -387,4 +387,11 @@ const skins = [
     link: 'skin-detail.html?hero=kagura-starlight',
     category: "starlight"
   },
+  {
+    img: 'https://ik.imagekit.io/Schwanzml2/20250920_202132.jpg?updatedAt=1758374506651',
+    name: 'Tigreal Collector',
+    date: "20-09-2025 20:18",
+    link: 'skin-detail.html?hero=tigreal-collector',
+    category: "collector"
+  },
 ];
