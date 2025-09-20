@@ -224,16 +224,23 @@
       user-select: none;
     }
     .pagination span {
-      padding: 6px 10px;
-      background-color: #eaeaea;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    .pagination span.active {
-      background-color: #1E90FF;
-      color: white;
-      font-weight: bold;
-    }
+  display: flex;                /* biar konten rata tengah */
+  align-items: center;          /* vertikal tengah */
+  justify-content: center;      /* horizontal tengah */
+  min-width: 32px;              /* semua tombol seragam */
+  height: 32px;                 /* tinggi sama */
+  padding: 0 8px;               /* spasi dalam */
+  background-color: #eaeaea;
+  border-radius: 4px;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.pagination span.active {
+  background-color: #1E90FF;
+  color: white;
+  font-weight: bold;
+}
     footer a {
   text-decoration: none;
   color: black;
@@ -287,8 +294,44 @@ footer .footer-copy {
 .skin-card.animate {
   animation: fadeDown 0.4s ease both;
 }
+.skin-card.clicked {
+  transform: scale(0.95);
+  opacity: 0.6;
+  transition: all 0.15s ease;
+}
 
+.skin-card.exit-anim {
+  animation: exitSmooth 0.6s ease forwards;
+}
 
+@keyframes exitSmooth {
+  0% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    filter: blur(0px);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(0.95) translateY(-10px);
+    filter: blur(1px);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.8) translateY(30px);
+    filter: blur(3px);
+  }
+}
+.back-btn {
+  text-decoration: none;
+  color: gray;
+  font-weight: bold;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.back-btn.exit-anim {
+  transform: translateX(-20px);
+  opacity: 0;
+}
   </style>
 </head>
 <body onload="initMenu()">
@@ -298,7 +341,7 @@ footer .footer-copy {
 <div class="header-block">
   <div class="header">
     <div class="left-section">
-      <div class="logo"><img src="https://i.ibb.co/wh9T2kXn/9d6f6dededf9c55cd966730d4d45d364.jpg" alt="Logo"></div>
+      <div class="logo"><img src="https://ik.imagekit.io/Schwanzml2/4e31c570c83f8efa1921e641afcf5342.jpg?updatedAt=1757980564561" alt="Logo"></div>
       <div class="site-title">Schwanz <span class="ml-blue">ML</span></div>
     </div>
     <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
@@ -320,7 +363,9 @@ footer .footer-copy {
 <div class="skin-section">
   <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
     <div style="font-weight: bold; font-size: 16px;">Semua Hero</div>
-    <div><a href="index.html" style="text-decoration: none; color: gray; font-weight: bold;">&lt;&lt;&lt;&lt;&lt;</a></div>
+    <div>
+      <a href="index.html" class="back-btn" onclick="return smoothBack(this)">&lt;&lt;&lt;&lt;&lt;</a>
+      </div>
   </div>
   <div class="skin-list" id="skinList"></div>
   <div id="noResult" style="display:none; text-align:center; color:#888; font-size:15px; margin-top:20px;">
@@ -332,7 +377,7 @@ footer .footer-copy {
 </div>
 <footer>
     <div class="footer-logo">
-      <img src="https://i.ibb.co/wh9T2kXn/9d6f6dededf9c55cd966730d4d45d364.jpg" alt="Logo">
+      <img src="https://ik.imagekit.io/Schwanzml2/4e31c570c83f8efa1921e641afcf5342.jpg?updatedAt=1757980564561" alt="Logo">
       <span>Schwanz <span class="ml-blue">ML</span></span>
     </div>
     <div style="margin-bottom: 20px;">
@@ -351,11 +396,11 @@ footer .footer-copy {
     <div style="margin-bottom: 10px;">
       <div style="font-weight: bold; margin-bottom: 8px;">Support</div>
       <a href="https://saweria.co/SchwanzSigma" target="_blank" style="display: flex; align-items: center; margin-bottom: 5px;">
-        <img src="https://i.ibb.co/V0DWfw0J/download-fotor-bg-remover-20250626155455.png" alt="Saweria" style="width: 30px; height: 30px; margin-right: 8px;">
+        <img src="https://ik.imagekit.io/Schwanzml2/Picsart_25-09-02_07-10-54-237.png?updatedAt=1756771883472" alt="Saweria" style="width: 30px; height: 30px; margin-right: 8px;">
         <span>Saweria</span>
       </a>
       <a href="https://tako.id/SchwanzML" target="_blank" style="display: flex; align-items: center; margin-bottom: 5px;">
-        <img src="https://i.ibb.co/zW2pnWxH/login-removebg-preview.png" alt="Tako ID" style="width: 30px; height: 30px; margin-right: 8px;">
+        <img src="https://ik.imagekit.io/Schwanzml2/login.png?updatedAt=1756771977002" alt="Tako ID" style="width: 30px; height: 30px; margin-right: 8px;">
         <span>Tako ID</span>
       </a>
     </div>
@@ -407,10 +452,13 @@ function renderPagination() {
 
   const buttonRow = document.createElement('div');
   buttonRow.style.display = 'flex';
-  buttonRow.style.justifyContent = 'center';
-  buttonRow.style.flexWrap = 'wrap';
-  buttonRow.style.gap = '6px';
-  buttonRow.style.marginBottom = '10px';
+buttonRow.style.justifyContent = 'center';
+buttonRow.style.alignItems = 'center'; // ✅ biar sejajar vertikal
+buttonRow.style.flexWrap = 'wrap';
+buttonRow.style.gap = '6px';
+buttonRow.style.marginBottom = '10px';
+
+
 
   // Tombol ⏮️
   const first = document.createElement('span');
@@ -655,6 +703,9 @@ function renderPagination() {
   buttonRow.appendChild(prev);
 
   // Tombol Angka
+  // Tombol Angka Ringkas
+if (totalPages <= 5) {
+  // Kalau total halaman sedikit, tampilkan semua
   for (let i = 1; i <= totalPages; i++) {
     const span = document.createElement('span');
     span.textContent = i;
@@ -662,6 +713,46 @@ function renderPagination() {
     span.onclick = () => goToPage(i);
     buttonRow.appendChild(span);
   }
+} else {
+  // Selalu tampilkan halaman 1
+  const firstNum = document.createElement('span');
+  firstNum.textContent = 1;
+  if (currentPage === 1) firstNum.classList.add('active');
+  firstNum.onclick = () => goToPage(1);
+  buttonRow.appendChild(firstNum);
+
+  if (currentPage > 3) {
+    const dots1 = document.createElement('span');
+    dots1.textContent = "...";
+    dots1.style.cursor = "default";
+    buttonRow.appendChild(dots1);
+  }
+
+  // Halaman sebelum dan sesudah current
+  const start = Math.max(2, currentPage - 1);
+  const end = Math.min(totalPages - 1, currentPage + 1);
+  for (let i = start; i <= end; i++) {
+    const span = document.createElement('span');
+    span.textContent = i;
+    if (i === currentPage) span.classList.add('active');
+    span.onclick = () => goToPage(i);
+    buttonRow.appendChild(span);
+  }
+
+  if (currentPage < totalPages - 2) {
+    const dots2 = document.createElement('span');
+    dots2.textContent = "...";
+    dots2.style.cursor = "default";
+    buttonRow.appendChild(dots2);
+  }
+
+  // Selalu tampilkan halaman terakhir
+  const lastNum = document.createElement('span');
+  lastNum.textContent = totalPages;
+  if (currentPage === totalPages) lastNum.classList.add('active');
+  lastNum.onclick = () => goToPage(totalPages);
+  buttonRow.appendChild(lastNum);
+}
 
   // Tombol ▶️
   const next = document.createElement('span');
@@ -751,8 +842,13 @@ function handleKeyPress(e) {
   if (e.key === 'Enter') handleSearch();
 }
 function handleClick(link, el) {
-  if (el) el.classList.add('clicked');
-  setTimeout(() => window.location.href = link, 800);
+  if (el) {
+    el.classList.add('clicked');   // efek scale kecil + popup
+    el.classList.add('exit-anim'); // animasi keluar smooth
+  }
+  setTimeout(() => {
+    window.location.href = link;
+  }, 1500); // delay biar animasi kelihatan
 }
 const urlParams = new URLSearchParams(window.location.search);
 let currentPage = parseInt(urlParams.get('page')) || 1;
@@ -779,6 +875,13 @@ function initMenu() {
       toggleMenu();
     };
   }
+}
+function smoothBack(el) {
+  el.classList.add('exit-anim');
+  setTimeout(() => {
+    window.location.href = el.getAttribute('href');
+  }, 500); // 0.5 detik biar animasi keliatan
+  return false; // cegah langsung pindah
 }
 </script>
 
