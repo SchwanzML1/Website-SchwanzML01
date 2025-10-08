@@ -361,6 +361,13 @@
       justify-content: space-between;
       align-items: center;
       margin-bottom: 15px;
+      position: relative;
+    }
+
+    .header-buttons {
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
     .skin-header .left-title {
@@ -368,24 +375,203 @@
       font-size: 16px;
     }
 
+    /* Animasi untuk Lihat Semua - IMPROVED */
     .right-link {
       display: inline-block;
-      background-color: #1E90FF;
+      background: linear-gradient(135deg, #1E90FF 0%, #0d6efd 100%);
       color: white !important;
-      padding: 6px 14px;
-      border-radius: 20px;
+      padding: 8px 18px;
+      border-radius: 25px;
       font-size: 13px;
       font-weight: bold;
       text-decoration: none !important;
-      transition: all 0.3s ease;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+      transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      box-shadow: 0 4px 15px rgba(30, 144, 255, 0.3);
+      position: relative;
+      overflow: hidden;
+      transform: translateY(0);
+    }
+
+    .right-link::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      transition: left 0.7s ease;
     }
 
     .right-link:hover {
-      background-color: #0d6efd;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+      background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 8px 25px rgba(30, 144, 255, 0.5);
       text-decoration: none !important;
+    }
+
+    .right-link:hover::before {
+      left: 100%;
+    }
+
+    .right-link:active {
+      transform: translateY(-1px) scale(1.02);
+      transition: transform 0.1s ease;
+    }
+
+    /* Animasi masuk untuk Lihat Semua */
+    .right-link.animate-in {
+      animation: slideInBounce 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+    }
+
+    @keyframes slideInBounce {
+      0% {
+        opacity: 0;
+        transform: translateX(30px) scale(0.8);
+      }
+      60% {
+        opacity: 1;
+        transform: translateX(-5px) scale(1.05);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+      }
+    }
+
+    /* Animasi keluar untuk Lihat Semua */
+    .right-link.exit {
+      animation: slideOutBounce 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+    }
+
+    @keyframes slideOutBounce {
+      0% {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+      }
+      30% {
+        opacity: 0.8;
+        transform: translateX(10px) scale(0.95);
+      }
+      100% {
+        opacity: 0;
+        transform: translateX(40px) scale(0.8);
+      }
+    }
+
+    /* Tombol Kembali - IMPROVED */
+    .back-button {
+      display: inline-block;
+      background: linear-gradient(135deg, #6c757d 0%, #5a6268 100%);
+      color: white !important;
+      padding: 8px 18px;
+      border-radius: 25px;
+      font-size: 13px;
+      font-weight: bold;
+      text-decoration: none !important;
+      transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      box-shadow: 0 4px 15px rgba(108, 117, 125, 0.3);
+      cursor: pointer;
+      opacity: 0;
+      transform: translateX(30px) scale(0.8);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .back-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: left 0.7s ease;
+    }
+
+    .dark-mode .back-button {
+      background: linear-gradient(135deg, #5a6268 0%, #4e555b 100%);
+    }
+
+    .back-button:hover {
+      background: linear-gradient(135deg, #5a6268 0%, #495057 100%);
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 8px 25px rgba(108, 117, 125, 0.5);
+      text-decoration: none !important;
+    }
+
+    .back-button:hover::before {
+      left: 100%;
+    }
+
+    .back-button:active {
+      transform: translateY(-1px) scale(1.02);
+      transition: transform 0.1s ease;
+    }
+
+    .dark-mode .back-button:hover {
+      background: linear-gradient(135deg, #4e555b 0%, #3d4248 100%);
+    }
+
+    /* Animasi masuk untuk tombol kembali */
+    .back-button.animate-in {
+      animation: slideInBounceReverse 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+    }
+
+    @keyframes slideInBounceReverse {
+      0% {
+        opacity: 0;
+        transform: translateX(-30px) scale(0.8);
+      }
+      60% {
+        opacity: 1;
+        transform: translateX(5px) scale(1.05);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+      }
+    }
+
+    /* Animasi keluar untuk tombol kembali */
+    .back-button.exit {
+      animation: slideOutBounceReverse 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+    }
+
+    @keyframes slideOutBounceReverse {
+      0% {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+      }
+      30% {
+        opacity: 0.8;
+        transform: translateX(-10px) scale(0.95);
+      }
+      100% {
+        opacity: 0;
+        transform: translateX(-40px) scale(0.8);
+      }
+    }
+
+    /* Pulse animation untuk kedua tombol */
+    @keyframes pulseGlow {
+      0% {
+        box-shadow: 0 4px 15px rgba(30, 144, 255, 0.3);
+      }
+      50% {
+        box-shadow: 0 4px 20px rgba(30, 144, 255, 0.6);
+      }
+      100% {
+        box-shadow: 0 4px 15px rgba(30, 144, 255, 0.3);
+      }
+    }
+
+    .right-link.pulse {
+      animation: pulseGlow 2s infinite;
+    }
+
+    .back-button.pulse {
+      animation: pulseGlow 2s infinite;
     }
 
     .skin-list {
@@ -414,6 +600,36 @@
       background-color: #3d3d3d;
       color: #fff;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    /* View Counter Styles */
+    .view-counter {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: linear-gradient(135deg, #1E90FF, #0d6efd);
+      color: white;
+      padding: 4px 8px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      z-index: 2;
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .view-counter svg {
+      width: 12px;
+      height: 12px;
+      fill: white;
+    }
+
+    .dark-mode .view-counter {
+      background: linear-gradient(135deg, #0d6efd, #0a58ca);
     }
 
     /* Animasi masuk yang lebih smooth */
@@ -878,7 +1094,10 @@
   <div class="skin-section">
     <div class="skin-header">
       <div class="left-title" id="searchTitle">Hero Terbaru</div>
-      <a href="allhero.html" class="right-link" id="lihatSemua">Lihat Semua</a>
+      <div class="header-buttons">
+        <a href="allhero.html" class="right-link" id="lihatSemua">Lihat Semua</a>
+        <div class="back-button" id="backButton" onclick="goBack()" style="display: none;">Kembali</div>
+      </div>
     </div>
     <div class="skin-list" id="skinList"></div>
     <div id="noResult" style="display: none; text-align: center; margin-top: 20px; font-weight: bold; color: red;">Tidak ada hasil ditemukan.</div>
@@ -967,6 +1186,19 @@
   
   <script src="skins-data.js"></script>
   <script>
+    // View counter system
+    function getViewCount(skinId) {
+      const views = JSON.parse(localStorage.getItem('skinViews') || '{}');
+      return views[skinId] || 0;
+    }
+
+    function incrementViewCount(skinId) {
+      const views = JSON.parse(localStorage.getItem('skinViews') || '{}');
+      views[skinId] = (views[skinId] || 0) + 1;
+      localStorage.setItem('skinViews', JSON.stringify(views));
+      return views[skinId];
+    }
+
     function toggleMenu(hamburger) {
       const menu = document.getElementById('menu');
       if (!hamburger.classList.contains('active')) {
@@ -1014,7 +1246,10 @@
       return new Date(tahun, bulan - 1, tgl, jam, menit);
     }
 
-    skins.sort((a, b) => parseTanggalIndo(b.date) - parseTanggalIndo(a.date));
+    // Sort skins by date (gunakan data dari skins-data.js)
+    if (typeof skins !== 'undefined') {
+      skins.sort((a, b) => parseTanggalIndo(b.date) - parseTanggalIndo(a.date));
+    }
 
     function renderSkins(filter = '') {
       const skinList = document.getElementById('skinList');
@@ -1023,24 +1258,35 @@
       let shown = 0;
       let found = false;
 
-      skins.forEach((skin, i) => {
-        if (filter && !skin.name.toLowerCase().includes(filter)) return;
-        if (!filter && shown >= 10) return;
+      // Gunakan data dari skins-data.js
+      if (typeof skins !== 'undefined') {
+        skins.forEach((skin, i) => {
+          if (filter && !skin.name.toLowerCase().includes(filter)) return;
+          if (!filter && shown >= 10) return;
 
-        found = true;
-        const div = document.createElement('div');
-        div.className = 'skin-card';
-        div.innerHTML = `
-          <a href="#" onclick="handleClick('${skin.link}', this.parentNode); return false;" style="text-decoration: none; color: inherit; display: block;">
-            <img src="${skin.img}" alt="${skin.name}">
-            <div class="date">${skin.date.split(" ")[0]}</div>
-            <div class="name">${skin.name}</div>
-          </a>
-          <div class="loading-popup">Tunggu sebentar ya...</div>
-        `;
-        skinList.appendChild(div);
-        shown++;
-      });
+          found = true;
+          const viewCount = getViewCount(skin.id || skin.name);
+          const div = document.createElement('div');
+          div.className = 'skin-card';
+          div.innerHTML = `
+            <a href="#" onclick="handleClick('${skin.link}', this.parentNode, '${skin.id || skin.name}'); return false;" style="text-decoration: none; color: inherit; display: block;">
+              <div class="view-counter">
+                <svg viewBox="0 0 24 24">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                  <circle cx="12" cy="12" r="3"></circle>
+                </svg>
+                ${viewCount}
+              </div>
+              <img src="${skin.img}" alt="${skin.name}">
+              <div class="date">${skin.date.split(" ")[0]}</div>
+              <div class="name">${skin.name}</div>
+            </a>
+            <div class="loading-popup">Tunggu sebentar ya...</div>
+          `;
+          skinList.appendChild(div);
+          shown++;
+        });
+      }
 
       noResult.style.display = found ? 'none' : 'block';
 
@@ -1053,12 +1299,15 @@
         document.querySelectorAll(".skin-card").forEach((card, i) => {
           setTimeout(() => {
             card.classList.add("animate-in");
-          }, i * 100); // Delay sedikit lebih lama untuk efek yang lebih dramatis
+          }, i * 100);
         });
       }, 100);
     }
 
-    function handleClick(link, el) {
+    function handleClick(link, el, skinId) {
+      // Increment view count
+      incrementViewCount(skinId);
+      
       if (el) {
         el.classList.add('clicked');
         el.classList.add('exit-anim');
@@ -1067,6 +1316,65 @@
       setTimeout(() => {
         window.location.href = link;
       }, 1500);
+    }
+
+    // Fungsi untuk menampilkan/menyembunyikan tombol kembali dan lihat semua
+    function toggleBackButton(show) {
+      const backButton = document.getElementById('backButton');
+      const lihatSemua = document.getElementById('lihatSemua');
+      
+      if (show) {
+        // Animasi keluar untuk Lihat Semua
+        lihatSemua.classList.add('exit');
+        
+        setTimeout(() => {
+          lihatSemua.style.display = 'none';
+          backButton.style.display = 'inline-block';
+          
+          // Trigger animasi masuk untuk Kembali
+          setTimeout(() => {
+            backButton.classList.add('animate-in');
+          }, 10);
+        }, 600);
+      } else {
+        // Animasi keluar untuk Kembali
+        backButton.classList.add('exit');
+        
+        setTimeout(() => {
+          backButton.style.display = 'none';
+          backButton.classList.remove('animate-in', 'exit');
+          lihatSemua.style.display = 'inline-block';
+          
+          // Trigger animasi masuk untuk Lihat Semua
+          setTimeout(() => {
+            lihatSemua.classList.remove('exit');
+            lihatSemua.classList.add('animate-in');
+          }, 10);
+        }, 600);
+      }
+    }
+
+    // Fungsi untuk kembali ke tampilan awal
+    function goBack() {
+      const searchInput = document.getElementById('searchInput');
+      const searchTitle = document.getElementById('searchTitle');
+      
+      // Reset pencarian
+      searchInput.value = '';
+      searchTitle.innerText = 'Hero Terbaru';
+      
+      // Sembunyikan tombol kembali dan tampilkan Lihat Semua
+      toggleBackButton(false);
+      
+      // Render ulang skin tanpa filter
+      renderSkins();
+      
+      // Hapus parameter search dari URL
+      if (window.history.replaceState) {
+        const url = new URL(window.location);
+        url.searchParams.delete('search');
+        window.history.replaceState({}, '', url);
+      }
     }
 
     // Fungsi untuk melakukan pencarian
@@ -1082,11 +1390,20 @@
 
         setTimeout(() => {
           const searchTitle = document.getElementById("searchTitle");
-          const lihatSemua = document.getElementById("lihatSemua");
           searchTitle.innerText = "Hasil untuk: " + keyword;
-          lihatSemua.style.display = "none";
+          
+          // Tampilkan tombol kembali dan sembunyikan Lihat Semua
+          toggleBackButton(true);
+          
           renderSkins(keyword);
           loadingText.style.display = "none";
+          
+          // Update URL dengan parameter search
+          if (window.history.replaceState) {
+            const url = new URL(window.location);
+            url.searchParams.set('search', keyword);
+            window.history.replaceState({}, '', url);
+          }
         }, 800);
       }
     }
@@ -1111,15 +1428,26 @@
       const searchParam = urlParams.get("search");
       const searchInput = document.getElementById("searchInput");
       const searchTitle = document.getElementById("searchTitle");
-      const lihatSemua = document.getElementById("lihatSemua");
 
       if (searchParam) {
         searchInput.value = searchParam;
         searchTitle.innerText = "Hasil untuk: " + searchParam;
-        if (lihatSemua) lihatSemua.style.display = "none";
+        
+        // Tampilkan tombol kembali
+        const backButton = document.getElementById('backButton');
+        const lihatSemua = document.getElementById('lihatSemua');
+        lihatSemua.style.display = 'none';
+        backButton.style.display = 'inline-block';
+        backButton.classList.add('animate-in');
+        
         renderSkins(searchParam.toLowerCase());
       } else {
-        if (lihatSemua) lihatSemua.style.display = "inline";
+        // Tampilkan animasi masuk untuk Lihat Semua
+        const lihatSemua = document.getElementById('lihatSemua');
+        setTimeout(() => {
+          lihatSemua.classList.add('animate-in');
+        }, 300);
+        
         searchTitle.innerText = "Hero Terbaru";
         renderSkins();
       }
@@ -1129,6 +1457,14 @@
           performSearch();
         }
       });
+
+      // Tambahkan efek pulse pada tombol Lihat Semua setelah beberapa detik
+      setTimeout(() => {
+        const lihatSemua = document.getElementById('lihatSemua');
+        if (lihatSemua.style.display !== 'none') {
+          lihatSemua.classList.add('pulse');
+        }
+      }, 2000);
     });
 
     function closeWarning() {
