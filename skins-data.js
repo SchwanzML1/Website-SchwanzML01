@@ -396,9 +396,9 @@ const skins = [
   },
   {
     img: 'https://ik.imagekit.io/Schwanzml2/IMG-20251011-WA0000.jpg?updatedAt=1760160062170',
-    name: 'Sun Collector',
+    name: 'Sun Annual Starlight',
     date: "11-10-2025 12:21",
-    link: 'skin-detail.html?hero=sun-collector',
-    category: "collector"
+    link: 'skin-detail.html?hero=sun-annual-starlight',
+    category: "Annual Starlight"
   },
 ];
