@@ -375,7 +375,7 @@
       font-size: 16px;
     }
 
-    /* Animasi untuk Lihat Semua - IMPROVED */
+    /* Animasi untuk Lihat Semua - IMPROVED dengan efek klik */
     .right-link {
       display: inline-block;
       background: linear-gradient(135deg, #1E90FF 0%, #0d6efd 100%);
@@ -417,6 +417,26 @@
     .right-link:active {
       transform: translateY(-1px) scale(1.02);
       transition: transform 0.1s ease;
+    }
+
+    /* Efek klik untuk Lihat Semua */
+    .right-link.clicked {
+      animation: clickAnimation 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+    }
+
+    @keyframes clickAnimation {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 4px 15px rgba(30, 144, 255, 0.3);
+      }
+      50% {
+        transform: scale(0.95);
+        box-shadow: 0 2px 8px rgba(30, 144, 255, 0.2);
+      }
+      100% {
+        transform: scale(1);
+        box-shadow: 0 4px 15px rgba(30, 144, 255, 0.3);
+      }
     }
 
     /* Animasi masuk untuk Lihat Semua */
@@ -600,36 +620,6 @@
       background-color: #3d3d3d;
       color: #fff;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    }
-
-    /* View Counter Styles */
-    .view-counter {
-      position: absolute;
-      top: 8px;
-      right: 8px;
-      background: linear-gradient(135deg, #1E90FF, #0d6efd);
-      color: white;
-      padding: 4px 8px;
-      border-radius: 12px;
-      font-size: 11px;
-      font-weight: bold;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-      z-index: 2;
-      backdrop-filter: blur(5px);
-      border: 1px solid rgba(255,255,255,0.2);
-    }
-
-    .view-counter svg {
-      width: 12px;
-      height: 12px;
-      fill: white;
-    }
-
-    .dark-mode .view-counter {
-      background: linear-gradient(135deg, #0d6efd, #0a58ca);
     }
 
     /* Animasi masuk yang lebih smooth */
@@ -1095,7 +1085,7 @@
     <div class="skin-header">
       <div class="left-title" id="searchTitle">Hero Terbaru</div>
       <div class="header-buttons">
-        <a href="allhero.html" class="right-link" id="lihatSemua">Lihat Semua</a>
+        <a href="allhero.html" class="right-link" id="lihatSemua" onclick="handleLihatSemua(event)">Lihat Semua</a>
         <div class="back-button" id="backButton" onclick="goBack()" style="display: none;">Kembali</div>
       </div>
     </div>
@@ -1186,17 +1176,14 @@
   
   <script src="skins-data.js"></script>
   <script>
-    // View counter system
+    // View counter system - DIHAPUS
     function getViewCount(skinId) {
-      const views = JSON.parse(localStorage.getItem('skinViews') || '{}');
-      return views[skinId] || 0;
+      return 0; // Selalu return 0 karena view counter dihapus
     }
 
     function incrementViewCount(skinId) {
-      const views = JSON.parse(localStorage.getItem('skinViews') || '{}');
-      views[skinId] = (views[skinId] || 0) + 1;
-      localStorage.setItem('skinViews', JSON.stringify(views));
-      return views[skinId];
+      // Tidak melakukan apa-apa karena view counter dihapus
+      return 0;
     }
 
     function toggleMenu(hamburger) {
@@ -1265,18 +1252,10 @@
           if (!filter && shown >= 10) return;
 
           found = true;
-          const viewCount = getViewCount(skin.id || skin.name);
           const div = document.createElement('div');
           div.className = 'skin-card';
           div.innerHTML = `
             <a href="#" onclick="handleClick('${skin.link}', this.parentNode, '${skin.id || skin.name}'); return false;" style="text-decoration: none; color: inherit; display: block;">
-              <div class="view-counter">
-                <svg viewBox="0 0 24 24">
-                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                  <circle cx="12" cy="12" r="3"></circle>
-                </svg>
-                ${viewCount}
-              </div>
               <img src="${skin.img}" alt="${skin.name}">
               <div class="date">${skin.date.split(" ")[0]}</div>
               <div class="name">${skin.name}</div>
@@ -1305,8 +1284,7 @@
     }
 
     function handleClick(link, el, skinId) {
-      // Increment view count
-      incrementViewCount(skinId);
+      // Increment view count - DIHAPUS
       
       if (el) {
         el.classList.add('clicked');
@@ -1408,6 +1386,20 @@
       }
     }
 
+    // Fungsi untuk menangani klik Lihat Semua dengan animasi
+    function handleLihatSemua(event) {
+      event.preventDefault();
+      const lihatSemua = document.getElementById('lihatSemua');
+      
+      // Tambahkan animasi klik
+      lihatSemua.classList.add('clicked');
+      
+      // Tunggu animasi selesai sebelum navigasi
+      setTimeout(() => {
+        window.location.href = 'allhero.html';
+      }, 600);
+    }
+
     document.addEventListener("DOMContentLoaded", () => {
       loadTheme(); // Load saved theme
       
@@ -1488,4 +1480,4 @@
     });
   </script>
 </body>
-</html>
+  </html>
