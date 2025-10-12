@@ -414,4 +414,13 @@ const skinData = {
     downloads: ["https://sfl.gl/BDZe", "https://sfl.gl/7CFrk",
     ]
   },
+  "karina-mcgg": {
+    name: "Karina MCGG",
+    date: "12-10-2025",
+    shortStory: "Karina is the best killer among the Dark Elves who lived codependently with her younger sister Selena. But as the older sister, Karina failed to prevent Selena from dedicating herself to the Abyss. In order to stop her sister's evil deeds, and to find a way to bring her back, Karina embarked on a new journey.",
+    replaces: ["Default", "Basic",
+    ],
+    downloads: ["https://sfl.gl/qKWMa", "https://sfl.gl/O4SIkBJb",
+    ]
+  },
 };
