@@ -399,6 +399,13 @@ const skins = [
     name: 'Sun Annual Starlight',
     date: "11-10-2025 12:21",
     link: 'skin-detail.html?hero=sun-annual-starlight',
-    category: "Annual Starlight"
+    category: "annual-starlight"
+  },
+  {
+    img: 'https://ik.imagekit.io/Schwanzml2/20251012_205058.jpg?updatedAt=1760277284387',
+    name: 'Karina MCGG',
+    date: "12-10-2025 18:59",
+    link: 'skin-detail.html?hero=karina-mcgg',
+    category: "mcgg"
   },
 ];
