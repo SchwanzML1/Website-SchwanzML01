@@ -408,4 +408,11 @@ const skins = [
     link: 'skin-detail.html?hero=karina-mcgg',
     category: "mcgg"
   },
+  {
+    img: 'https://ik.imagekit.io/Schwanzml2/File%20Gambar%20ML/20251016_130700.jpg?updatedAt=1760676058419',
+    name: 'Fredrinn Starlight',
+    date: "17-10-2025 11:42",
+    link: 'skin-detail.html?hero=fredrinn-starlight',
+    category: "starlight"
+  },
 ];
