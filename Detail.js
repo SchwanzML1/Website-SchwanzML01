@@ -1,6 +1,6 @@
 // detail.js
 const skinData = {
-  "natan-msc": {
+    "natan-msc": {
     name: "Natan MSC",
     date: "21-06-2025",
     shortStory: "A thousand years after falling into a deep slumber, the Lord of the Abyss and the Lord of Light awoke, and so the Endless War raged once more. Natan stood as Eruditio's leader, guiding the people in their search for hope in this world. Yet having faced numerous defeats he decided instead to cast his gaze not to the future, but to the past by inventing a time machine. As the world teetered on the brink of destruction, his time machine finally reached completion as it absorbed the combined power of the Twilight Orbs: Natan stepped within, and started searching the past for a chance to save the world.",
@@ -421,6 +421,15 @@ const skinData = {
     replaces: ["Default", "Basic",
     ],
     downloads: ["https://sfl.gl/qKWMa", "https://sfl.gl/O4SIkBJb",
+    ]
+  },
+  "fredrinn-starlight": {
+    name: "Fredrinn Starlight",
+    date: "17-10-2025",
+    shortStory: "Fredrinn, the Rogue Appraiser, was once a noble treasure hunter who sought priceless relics to protect his kingdom. However, greed and betrayal led him astray, and he became a mercenary who fought only for gold. Despite his rough exterior, Fredrinn carries a sense of justice within him, often risking his life to save those in need. With his powerful crystal energy and unyielding strength, he now roams the Land of Dawn—seeking redemption for his past sins and proving that even a fallen hero can rise again.",
+    replaces: ["Default", "Basic",
+    ],
+    downloads: ["https://sfl.gl/VAuoCJc2", "#",
     ]
   },
 };
