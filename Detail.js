@@ -438,7 +438,7 @@ const skinData = {
     shortStory: "Paquito is a fighter from a small village who idolized a legendary boxer and trained tirelessly to become strong. With unmatched determination, he mastered martial arts and dedicated himself to protecting the weak. His journey led him across the lands, fighting for justice and proving that true strength comes from perseverance and heart, not just power.",
     replaces: ["Default", "Basic",
     ],
-    downloads: ["https://sfl.gl/G43lD3Se", "#",
+    downloads: ["https://sfl.gl/Z6vwdvg", "https://sfl.gl/MtS3fsq7",
     ]
   },
 };
