@@ -415,4 +415,11 @@ const skins = [
     link: 'skin-detail.html?hero=fredrinn-starlight',
     category: "starlight"
   },
+  {
+    img: 'https://ik.imagekit.io/Schwanzml2/File%20Gambar%20ML/20251018_203821.jpg?updatedAt=1760794755364',
+    name: 'Paquito Epic',
+    date: "18-10-2025 20:40",
+    link: 'skin-detail.html?hero=paquito-epic',
+    category: "epic"
+  },
 ];
