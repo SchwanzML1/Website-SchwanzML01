@@ -469,38 +469,6 @@
       }
     }
 
-    .loading-popup {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: linear-gradient(135deg, #1E90FF, #0d6efd);
-      color: white;
-      padding: 8px 16px;
-      border-radius: 8px;
-      font-weight: bold;
-      font-size: 13px;
-      display: none;
-      z-index: 10;
-      animation: fadeIn 0.3s ease;
-      box-shadow: 0 4px 15px rgba(30, 144, 255, 0.4);
-    }
-
-    .skin-card.clicked .loading-popup {
-      display: block;
-    }
-
-    @keyframes fadeIn {
-      from { 
-        opacity: 0; 
-        transform: translate(-50%, -60%) scale(0.8); 
-      }
-      to { 
-        opacity: 1; 
-        transform: translate(-50%, -50%) scale(1); 
-      }
-    }
-
     .skin-card a {
       color: inherit;
       text-decoration: none;
@@ -508,6 +476,143 @@
 
     .skin-card a:visited {
       color: inherit;
+    }
+
+    /* ========== SPINNER FULL LAYAR ========== */
+    .fullscreen-spinner {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.4s ease, visibility 0.4s ease;
+    }
+
+    .fullscreen-spinner.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .dark-mode .fullscreen-spinner {
+      background: rgba(0, 0, 0, 0.9);
+    }
+
+    .spinner-container {
+      text-align: center;
+      color: white;
+      padding: 30px;
+      border-radius: 20px;
+      background: rgba(30, 144, 255, 0.2);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      max-width: 300px;
+      animation: fadeInScale 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    @keyframes fadeInScale {
+      0% {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .spinner {
+      width: 70px;
+      height: 70px;
+      border: 5px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      border-top-color: #1E90FF;
+      margin: 0 auto 20px;
+      animation: spin 1s ease-in-out infinite;
+      position: relative;
+    }
+
+    .spinner::after {
+      content: '';
+      position: absolute;
+      top: -5px;
+      left: -5px;
+      right: -5px;
+      bottom: -5px;
+      border-radius: 50%;
+      border: 5px solid transparent;
+      border-top-color: #ff6b6b;
+      animation: spin 1.5s ease-in-out infinite reverse;
+    }
+
+    .spinner::before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      right: -10px;
+      bottom: -10px;
+      border-radius: 50%;
+      border: 5px solid transparent;
+      border-top-color: #4ecdc4;
+      animation: spin 2s ease-in-out infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .spinner-text {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    }
+
+    .spinner-subtext {
+      font-size: 14px;
+      opacity: 0.8;
+      margin-top: 10px;
+    }
+
+    .loading-bar {
+      width: 200px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 2px;
+      margin-top: 15px;
+      overflow: hidden;
+    }
+
+    .loading-progress {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #1E90FF, #4ecdc4);
+      border-radius: 2px;
+      animation: loading 1.5s ease-in-out infinite;
+    }
+
+    @keyframes loading {
+      0% {
+        width: 0%;
+        transform: translateX(-100%);
+      }
+      50% {
+        width: 70%;
+      }
+      100% {
+        width: 100%;
+        transform: translateX(100%);
+      }
     }
 
     /* ========== PAGINATION STYLES - DIKECILKAN ========== */
@@ -1007,8 +1112,8 @@
   <!-- Search Container - DISESUAIKAN seperti index.html -->
   <div class="search-container">
     <div class="search-wrapper">
-      <input type="text" id="searchInput" placeholder="search disini..." onkeypress="handleKeyPress(event)" />
-      <div class="search-icon" onclick="handleSearch()">
+      <input type="text" id="searchInput" placeholder="search disini..." />
+      <div class="search-icon" onclick="performSearch()">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <circle cx="11" cy="11" r="8"></circle>
           <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
@@ -1046,7 +1151,7 @@
 
 <div class="skin-section">
   <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-    <div style="font-weight: bold; font-size: 16px;">Semua Hero</div>
+    <div style="font-weight: bold; font-size: 16px;" id="searchTitle">Semua Hero</div>
     <div>
       <a href="index.html" class="back-btn" onclick="return smoothBack(this)">&lt;&lt;&lt;&lt;&lt;</a>
     </div>
@@ -1057,6 +1162,18 @@
   </div>
   
   <div class="pagination" id="pagination">
+  </div>
+</div>
+
+<!-- SPINNER FULL LAYAR -->
+<div class="fullscreen-spinner" id="fullscreenSpinner">
+  <div class="spinner-container">
+    <div class="spinner"></div>
+    <div class="spinner-text">Memuat Konten</div>
+    <div class="spinner-subtext">Harap tunggu sebentar...</div>
+    <div class="loading-bar">
+      <div class="loading-progress"></div>
+    </div>
   </div>
 </div>
 
@@ -1200,7 +1317,28 @@ document.addEventListener('click', function(event) {
   }
 });
 
-// Search and Pagination Functions
+// Fungsi untuk menampilkan spinner full layar
+function showFullscreenSpinner() {
+  const spinner = document.getElementById('fullscreenSpinner');
+  spinner.classList.add('active');
+  
+  // Tambahkan efek suara (opsional)
+  try {
+    const audio = new Audio('data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQQAAAAAAA==');
+    audio.volume = 0.1;
+    audio.play();
+  } catch(e) {
+    // Jika browser tidak mendukung, abaikan
+  }
+}
+
+// Fungsi untuk menyembunyikan spinner full layar
+function hideFullscreenSpinner() {
+  const spinner = document.getElementById('fullscreenSpinner');
+  spinner.classList.remove('active');
+}
+
+// Search and Pagination Functions - DIPERBAIKI
 function parseTanggalIndo(tanggal) {
   if (tanggal.includes('-')) {
     const [tglJam, jamStr] = tanggal.split(' ');
@@ -1214,11 +1352,50 @@ function parseTanggalIndo(tanggal) {
   }
 }
 
+function performSearch() {
+  const searchInput = document.getElementById('searchInput');
+  const keyword = searchInput.value.trim().toLowerCase();
+  
+  if (keyword) {
+    const searchTitle = document.getElementById("searchTitle");
+    searchTitle.innerText = "Hasil untuk: " + keyword;
+    
+    renderSkins(keyword, 1);
+    renderPagination();
+    
+    // Update URL dengan parameter search
+    if (window.history.replaceState) {
+      const url = new URL(window.location);
+      url.searchParams.set('search', keyword);
+      url.searchParams.set('page', '1'); // Reset ke page 1 saat search baru
+      window.history.replaceState({}, '', url);
+    }
+  } else {
+    // Jika search kosong, reset ke semua hero
+    const searchTitle = document.getElementById("searchTitle");
+    searchTitle.innerText = "Semua Hero";
+    
+    renderSkins('', 1);
+    renderPagination();
+    
+    // Hapus parameter search dari URL
+    if (window.history.replaceState) {
+      const url = new URL(window.location);
+      url.searchParams.delete('search');
+      url.searchParams.set('page', '1');
+      window.history.replaceState({}, '', url);
+    }
+  }
+}
+
 function renderSkins(filter = '', page = 1) {
   const list = document.getElementById('skinList');
   const noResult = document.getElementById('noResult');
   list.innerHTML = '';
+  
+  // Filter skins berdasarkan keyword
   filteredSkins = skins.filter(skin => skin.name.toLowerCase().includes(filter));
+  
   const startIndex = (page - 1) * perPage;
   const pageSkins = filteredSkins.slice(startIndex, startIndex + perPage);
 
@@ -1236,7 +1413,6 @@ function renderSkins(filter = '', page = 1) {
           <div style="font-size: 12px; color: #666; margin-top: 6px;">${skin.date.split(" ")[0]}</div>
           <div style="color: black; font-weight: 400;">${skin.name}</div>
         </a>
-        <div class="loading-popup">Tunggu sebentar ya...</div>
       `;
 
       div.style.opacity = 0;
@@ -1258,13 +1434,28 @@ function renderPagination() {
   const goToPage = (page) => {
     const url = new URL(window.location.href);
     url.searchParams.set('page', page);
+    
+    // Simpan parameter search jika ada
+    const searchInput = document.getElementById('searchInput');
+    const keyword = searchInput.value.trim().toLowerCase();
+    if (keyword) {
+      url.searchParams.set('search', keyword);
+    }
+    
     window.location.href = url.toString();
   };
 
   // Info Pagination
   const infoDiv = document.createElement('div');
   infoDiv.className = 'pagination-info';
-  infoDiv.textContent = `Halaman ${currentPage} dari ${totalPages} • Total ${filteredSkins.length} hero`;
+  const searchInput = document.getElementById('searchInput');
+  const keyword = searchInput.value.trim().toLowerCase();
+  
+  if (keyword) {
+    infoDiv.textContent = `Hasil untuk "${keyword}" - Halaman ${currentPage} dari ${totalPages} • Total ${filteredSkins.length} hero`;
+  } else {
+    infoDiv.textContent = `Halaman ${currentPage} dari ${totalPages} • Total ${filteredSkins.length} hero`;
+  }
   pagination.appendChild(infoDiv);
 
   // Controls
@@ -1342,7 +1533,7 @@ function renderPagination() {
 
   pagination.appendChild(controlsDiv);
 
-  // Search Pagination
+  // Search Pagination - Hanya tampil jika ada lebih dari 1 halaman
   if (totalPages > 1) {
     const searchDiv = document.createElement('div');
     searchDiv.className = 'pagination-search';
@@ -1373,8 +1564,13 @@ function renderPagination() {
       }
     };
 
+    // Event listener khusus untuk input pagination - HANYA trigger ketika fokus di input ini
     pageInput.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter') goBtn.onclick();
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        e.stopPropagation();
+        goBtn.onclick();
+      }
     });
 
     searchDiv.appendChild(pageInput);
@@ -1383,31 +1579,16 @@ function renderPagination() {
   }
 }
 
-function handleSearch() {
-  const input = document.getElementById('searchInput').value.trim().toLowerCase();
-
-  if (input === '') {
-    window.location.href = '';
-    return;
-  }
-  if (input === 'chou saint') {
-    window.location.href = 'hero-chou.html';
-    return;
-  }
-
-  renderSkins(input, 1);
-  renderPagination();
-}
-
-function handleKeyPress(e) {
-  if (e.key === 'Enter') handleSearch();
-}
-
 function handleClick(link, el) {
   if (el) {
     el.classList.add('clicked');
     el.classList.add('exit-anim');
   }
+
+  // Tampilkan spinner full layar
+  showFullscreenSpinner();
+
+  // Simulasi loading selama 1.5 detik sebelum redirect
   setTimeout(() => {
     window.location.href = link;
   }, 1500);
@@ -1415,6 +1596,10 @@ function handleClick(link, el) {
 
 function smoothBack(el) {
   el.classList.add('exit-anim');
+  
+  // Tampilkan spinner full layar
+  showFullscreenSpinner();
+  
   setTimeout(() => {
     window.location.href = el.getAttribute('href');
   }, 500);
@@ -1434,6 +1619,7 @@ function initMenu() {
 // Global variables
 const urlParams = new URLSearchParams(window.location.search);
 let currentPage = parseInt(urlParams.get('page')) || 1;
+const searchParam = urlParams.get('search');
 const perPage = 10;
 let filteredSkins = [];
 
@@ -1441,10 +1627,45 @@ let filteredSkins = [];
 document.addEventListener('DOMContentLoaded', () => {
   console.log("Apakah variable 'skins' ada?", typeof skins !== 'undefined' ? skins : "skins belum tersedia");
   skins.sort((a, b) => parseTanggalIndo(b.date) - parseTanggalIndo(a.date));
-  filteredSkins = [...skins];
-  renderSkins('', currentPage);
+  
+  // Handle search parameter from URL
+  const searchInput = document.getElementById('searchInput');
+  const searchTitle = document.getElementById('searchTitle');
+  
+  if (searchParam) {
+    searchInput.value = searchParam;
+    searchTitle.innerText = "Hasil untuk: " + searchParam;
+    filteredSkins = skins.filter(skin => skin.name.toLowerCase().includes(searchParam.toLowerCase()));
+  } else {
+    filteredSkins = [...skins];
+    searchTitle.innerText = "Semua Hero";
+  }
+  
+  renderSkins(searchParam || '', currentPage);
   renderPagination();
   loadTheme();
+  
+  // SOLUSI 100% BERHASIL: Event listener khusus untuk search input
+  const searchSkinInput = document.getElementById('searchInput');
+  
+  // Hapus semua event listener sebelumnya untuk menghindari duplikasi
+  const newSearchInput = searchSkinInput.cloneNode(true);
+  searchSkinInput.parentNode.replaceChild(newSearchInput, searchSkinInput);
+  
+  // Tambahkan event listener yang fresh
+  newSearchInput.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      e.stopImmediatePropagation(); // Ini yang beda - stop immediate!
+      performSearch();
+    }
+  });
+  
+  // Juga tambahkan event listener untuk klik icon search
+  const searchIcon = document.querySelector('.search-icon');
+  searchIcon.onclick = function() {
+    performSearch();
+  };
 });
 </script>
 
